@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { ContextoApp } from '../../../App.js'
 
 import {
   HiOutlineCalendarDays,
@@ -7,60 +8,33 @@ import {
   HiOutlineHomeModern,
   HiOutlineUsers,
 } from "react-icons/hi2";
-
-/* const NavList = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-`;
-
-const StyledNavLink = styled(NavLink)`
-  &:link,
-  &:visited {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-
-    color: var(--color-grey-600);
-    font-size: 1.6rem;
-    font-weight: 500;
-    padding: 1.2rem 2.4rem;
-    transition: all 0.3s;
-  } */
+import { useContext } from "react";
 
 export default function MenuEsquerda() {
+  const { context } = useContext(ContextoApp)
+
   return (
     <ul>
-      <li>
-        <NavLink to="/dashboard">
-          <HiOutlineHome />
-          <span>Home</span>
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/bookings">
+      <li >
+        <NavLink to="/quartos" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', lineHeight: '40px' }}>
           <HiOutlineCalendarDays />
-          <span>Bookings</span>
+          <span style={{ paddingLeft: 10 }}>Quartos</span>
         </NavLink>
       </li>
       <li>
-        <NavLink to="/cabins">
+        <NavLink to="/reservas" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', lineHeight: '40px' }}>
           <HiOutlineHomeModern />
-          <span>Cabins</span>
+          <span style={{ paddingLeft: 10 }}>Reservas</span>
         </NavLink>
       </li>
-      <li>
-        <NavLink to="/users">
-          <HiOutlineUsers />
-          <span>Users</span>
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/settings">
-          <HiOutlineCog6Tooth />
-          <span>Settings</span>
-        </NavLink>
-      </li>
+      {context.admin &&
+        <li>
+          <NavLink to="/utilizadores" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', lineHeight: '40px' }}>
+            <HiOutlineUsers />
+            <span style={{ paddingLeft: 10 }}>Utilizadores</span>
+          </NavLink>
+        </li>
+      }
     </ul>
   );
 }

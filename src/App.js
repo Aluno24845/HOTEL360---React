@@ -7,13 +7,15 @@ import AppLayout from "./app/components/Layout/Layout";
 import Quartos from "./app/paginas/Quartos";
 import Reservas from "./app/paginas/Reservas";
 import Utilizadores from "./app/paginas/Utilizadores"
+import CriarQuarto from "./app/paginas/CriarQuarto"
+import CriarReserva from "./app/paginas/CriarReserva"
 
 import Login from "./app/paginas/Login";
 import Register from "./app/paginas/Registo";
 
 
 var contextReferencia = {
-  contexto: {},
+  contexto: { admin: true },
   setContexto: () => { },
 };
 
@@ -21,7 +23,7 @@ export const ContextoApp = createContext({ ...contextReferencia });
 
 function App() {
   const [stateApp, setStateApp] = useState({ ...contextReferencia.contexto });
-  
+
   return (
     <BrowserRouter>
       <ContextoApp.Provider value={{ context: stateApp, setContexto: setStateApp }}>
@@ -29,7 +31,11 @@ function App() {
           <Route element={<AppLayout />}>
             <Route path="/quartos" element={<Quartos />} />
             <Route path="/reservas" element={<Reservas />} />
-            <Route path="/utilizadores" element={<Utilizadores />} />
+            {stateApp.admin && <Route path="/utilizadores" element={<Utilizadores />} />}
+            {stateApp.admin && <Route path="/criar-quarto" element={<CriarQuarto />} />}
+            <Route path="/criar-reserva" element={<CriarReserva />} />
+            {stateApp.admin && <Route path="/quartos/:id" element={<CriarQuarto />} />}
+            {stateApp.admin && <Route path="/reservas/:id" element={<CriarReserva />} />}
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/registo" element={<Register />}></Route>

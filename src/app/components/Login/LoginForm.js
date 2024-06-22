@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ButtonLG from "../ButtonLg/ButtonLg";
 
-function LoginForm() {
+export default function LoginForm() {
   // Estado para armazenar o e-mail e a senha
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -48,6 +48,4 @@ function LoginForm() {
       </div>
     </form>
   );
-}
-
-export default LoginForm;
+};
