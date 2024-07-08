@@ -20,17 +20,11 @@ export default function ListaQuartos() {
             .then(data => setQuartos(data))
     }, [])
 
-    return (
-        <div className="h-full bg-white border ">
-            <div className="grid grid-cols-4 bg-gray-100 border-b border-gray-600">
-                <div>Quarto</div>
-                <div>Capacidade</div>
-                <div>Preço</div>
-                {context.admin && <div>Ações</div>}
+    return <div className="bg-white">
+            <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+                {quartos.map((quarto) => (
+                    <Item quarto={quarto} reloadLista={reloadLista} key={quarto.id} />
+                ))}
             </div>
-            {quartos.map((quarto) => (
-                <Item quarto={quarto} reloadLista={reloadLista} key={quarto.id} />
-            ))}
-        </div>
-    )
+    </div>
 }

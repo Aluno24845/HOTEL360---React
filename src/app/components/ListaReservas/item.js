@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { HiPencil, HiSquare2Stack, HiTrash } from "react-icons/hi2";
+import { HiPencil, HiTrash, HiEye } from "react-icons/hi2";
 import { useContext } from "react";
 import { ContextoApp } from '../../../App.js'
 import * as Api from '../../../service/api'
@@ -19,12 +18,20 @@ export default function Quarto({ reserva, reloadLista }) {
         <div>{new Date(reserva.dataCheckIN).toLocaleDateString()}</div>
         <div>{new Date(reserva.dataCheckOUT).toLocaleDateString()}</div>
         <div>{reserva.valorPago}.00€</div>
-        {context.admin && <div>
-            <a href={`/reservas/${reserva.id}`}>
-                <HiPencil />
-            </a>
-            <button onClick={() => apagaReserva(reserva.id)}><HiTrash /></button>
+        <div className="flex">
+            {context.utilizador && <>
+                <a style={{ paddingRight: 10 }} href={`/reservas/${reserva.id}/detalhes`}>
+                    < HiEye /> Ver
+                </a>
+            </>}
+            {context.utilizador && (context.utilizador.role === 'Gerentes' || context.utilizador.role === 'Reccecionistas') &&
+                <div className="flex" style={{ alignSelf: 'center' }}>
+                    <a style={{ alignItems: 'center' }} href={`/reservas/${reserva.id}`}>
+                        <HiPencil />Editar
+                    </a>
+                    <button style={{ paddingLeft: 10, alignItems: 'center' }} onClick={() => apagaReserva(reserva.id)}><HiTrash />Apagar</button>
+                </div>
+            }
         </div>
-        }
     </div>
 }

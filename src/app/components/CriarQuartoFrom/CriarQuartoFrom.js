@@ -4,14 +4,31 @@ import * as Api from '../../../service/api'
 import { useParams } from "react-router-dom";
 
 export default function CriarQuarto() {
-    // Estado para armazenar o e-mail e a senha
+    // Obtém o parâmetro "id" da URL
     const { id } = useParams()
     console.log('id ', id)
+
+    // Definir os estados locais para armazenar os valores do formulário
     const [nome, setNome] = useState("");
     const [capacidade, setCapacidade] = useState("");
     const [preco, setPreco] = useState("");
     const [descricao, setDescricao] = useState("");
+    const [selectedImage, setSelectedImage] = useState(null);
 
+    // Função para apagar um quarto
+    function apagarQuarto(id) {
+        Api.apagaQuarto(id)
+            .then(data => data.json())
+            .then(data => {
+                if (data.erro) {
+                    console.log(data)
+                } else {
+                    window.location.pathname = '/quartos'
+                }
+            })
+    }
+
+    // useEffect para carregar os dados do quarto quando o componente monta, se um ID estiver presente
     useEffect(() => {
         if (!id) return
         Api.getQuartoComId(id)
@@ -21,6 +38,7 @@ export default function CriarQuarto() {
                 setCapacidade(data.capacidade)
                 setPreco(data.preco)
                 setDescricao(data.descricao)
+                setSelectedImage(`https://localhost:7130/Imagens/${data.imagem}`)
             })
     }, [])
 
@@ -28,19 +46,30 @@ export default function CriarQuarto() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        if (!nome || !capacidade || !preco || !descricao)
+        // Valida os campos do formulário antes de enviar
+        if (!nome || !capacidade || !preco || !descricao || !selectedImage)
             return
         if (!id)
-            Api.criarQuarto({ nome, capacidade, preco, descricao })
+            // Cria um novo quarto se não houver ID
+            Api.criarQuarto({ Nome: nome, Capacidade: capacidade, PrecoAux: preco, Descricao: descricao, ImagemLogo: selectedImage })
                 .then(data => data.json())
                 .then(data => {
-                    window.location.pathname = '/quartos'
+                    if (data.erro) {
+                        console.log('Erro a guardar quarto')
+                    } else {
+                        window.location.pathname = '/quartos'
+                    }
                 })
         else
-            Api.editarQuarto(id, { nome, capacidade, preco, descricao })
+            // Edita um quarto existente se houver ID
+            Api.editarQuarto(id, { Nome: nome, Capacidade: capacidade, PrecoAux: preco.toString(), Descricao: descricao.toString(), ImagemLogo: selectedImage })
                 .then(data => data.json())
                 .then(data => {
-                    window.location.pathname = '/quartos'
+                    if (data.erro) {
+                        console.log('Erro a guardar quarto')
+                    } else {
+                        window.location.pathname = '/quartos'
+                    }
                 })
     };
 
@@ -49,6 +78,19 @@ export default function CriarQuarto() {
             className="p-2 bg-gray-50 border-gray-200 rounded-lg"
             onSubmit={handleSubmit}
         >
+            {/* Exibição da imagem selecionada */}
+            <div className="flex flex-col gap-2 p-4" >
+                {selectedImage && (
+                    <div style={{ maxWidth: '500px', width: '100%', alignSelf: 'center' }}>
+                        <img
+                            alt={nome}
+                            width={"100%"}
+                            src={selectedImage}
+                        />
+                    </div>
+                )}
+            </div>
+            {/* Campo de entrada para o nome do quarto */}
             <div className="flex flex-col gap-2 p-4">
                 <label htmlFor="email">Nome:</label>
                 <input
@@ -61,7 +103,7 @@ export default function CriarQuarto() {
                     required
                 />
             </div>
-
+            {/* Campo de entrada para a capacidade do quarto */}
             <div className="flex flex-col gap-2 p-4">
                 <label htmlFor="password">Capacidade:</label>
                 <input
@@ -74,7 +116,7 @@ export default function CriarQuarto() {
                     required
                 />
             </div>
-
+            {/* Campo de entrada para o preço do quarto */}
             <div className="flex flex-col gap-2 p-4">
                 <label htmlFor="password">Preço:</label>
                 <input
@@ -87,7 +129,7 @@ export default function CriarQuarto() {
                     required
                 />
             </div>
-
+            {/* Campo de entrada para a descrição do quarto */}
             <div className="flex flex-col gap-2 p-4">
                 <label htmlFor="password">Descrição:</label>
                 <input
@@ -100,15 +142,42 @@ export default function CriarQuarto() {
                     required
                 />
             </div>
+            {/* Exibição da imagem selecionada para troca */}
+            {(!id || (!id && selectedImage)) && (
+                <div className="flex flex-col gap-2 p-4">
+                    <div>
+                        <img
+                            alt="not found"
+                            width={"250px"}
+                            src={selectedImage}
+                        />
+                    </div>
+                </div>
+            )}
+            {/* Campo de entrada para trocar a imagem */}
+            {(id || !selectedImage) && (
+                <div className="flex flex-col gap-2 p-4">
+                    <span>Trocar Imagem:</span>
+                    <input
+                        type="file"
+                        name="myImage"
+                        onChange={(event) => {
+                            setSelectedImage(event.target.files[0])
+                        }}
+                    />
+                </div>
+            )}
+            {/* Botão para enviar o formulário */}
             <div className="flex flex-col gap-2 p-5">
                 <ButtonLG onClick={() => {
                     handleSubmit();
                 }} type="submit">{id ? 'Editar' : 'Criar'}</ButtonLG>
             </div>
+            {/* Botão para apagar o quarto se o ID estiver presente */}
+            {id &&
+                <div className="flex flex-col gap-2 p-5">
+                    <button onClick={() => apagarQuarto(id)} style={{}} className="text-white bg-indigo-500 shadow-sm w-full hover:bg-indigo-400 text-blue-365 font-semibold hover:text-white py-2 px-4 border border-gray-300 rounded-md shadow-sm hover:border-transparent " >Apagar</button>
+                </div>}
         </form>
-    );
-    return <>
-
-
-    </>
+    )
 }

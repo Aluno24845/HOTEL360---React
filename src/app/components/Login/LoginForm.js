@@ -1,17 +1,29 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import ButtonLG from "../ButtonLg/ButtonLg";
+import * as Api from '../../../service/api'
+import { ContextoApp } from '../../../App.js'
 
 export default function LoginForm() {
   // Estado para armazenar o e-mail e a senha
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
+  const [email, setEmail] = useState("mariajoao@aa.aa");
+  const [password, setPassword] = useState("2024-Aulas");
+  const { context, setContexto } = useContext(ContextoApp)
   // Função para lidar com o envio do formulário
   const handleSubmit = (event) => {
     event.preventDefault();
     // Aqui você pode adicionar a lógica para enviar o e-mail e a senha para o servidor
-    console.log("E-mail:", email);
-    console.log("Senha:", password);
+
+    Api.autenticar({ email, password })
+      .then(data => data.json())
+      .then(dataAutenticacao => {
+        if(dataAutenticacao.status && dataAutenticacao.status !==200){
+          alert('autenticacao falhou')
+          return 
+        }
+        localStorage.setItem('token', dataAutenticacao.accessToken)
+        setContexto({ ...dataAutenticacao, ...context })
+        window.location.pathname='/quartos'
+      })
   };
 
   return (
