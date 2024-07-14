@@ -8,8 +8,14 @@ export default function Registo() {
     const { id } = useParams()
     const { context } = useContext(ContextoApp);
 
-    const autorizado =(( id && (context.utilizador.id === parseInt(id)) || (context.utilizador.role === 'Gerentes' || context.utilizador.role === 'Reccecionistas')));
-    
+    const autorizado = (
+
+        id &&
+         (   (context.utilizador.id === parseInt(id)) || (context.utilizador.role === 'Gerentes' || context.utilizador.role === 'Reccecionistas'))
+        
+
+    );
+
     if (!autorizado) {
         window.location.pathname = '/'
         return

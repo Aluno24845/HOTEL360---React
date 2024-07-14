@@ -44,6 +44,7 @@ export default function Quarto({ quarto, reloadLista }) {
                     <img
                         // src={`https://localhost:7130/Imagens/e5814941-e716-4074-8841-2c09dbcbcce0.png`}
                         title={quarto.nome}
+                        alt="imagem do quarto"
                         src={`https://localhost:7130/Imagens/${quarto.imagem}`}
                         className="h-full w-full object-cover object-center group-hover:opacity-75"
                     ></img>

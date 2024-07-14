@@ -28,6 +28,7 @@ export default function CriarServico() {
                 setPreco(data.preco)
                 setDescricao(data.descricao)
             })
+                // eslint-disable-next-line
     }, [])
 
     // Função para lidar com o envio do formulário

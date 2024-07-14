@@ -4,7 +4,6 @@ import Select from 'react-select';
 import ButtonLG from "../ButtonLg/ButtonLg";
 import { ContextoApp } from '../../../App.js'
 import * as Api from '../../../service/api.js'
-import { toast } from 'react-toastify';
 import ButtonRegressar from "../ButtonRegressar/ButtonRegressar.js";
 
 const opcoes = [{
@@ -26,6 +25,7 @@ export default function RegistoForm() {
 
   // Estados para armazenar os dados do formulário
   const [tipo, setTipo] = useState();
+  // eslint-disable-next-line
   const [listaTipo, setListaTipo] = useState(opcoes);
 
   const [email, setEmail] = useState("");
@@ -36,8 +36,8 @@ export default function RegistoForm() {
   const [telemovel, setTelemovel] = useState("");
   const [dataNasc, setDataNasc] = useState("");
   const [avatar, setAvatar] = useState("");
-  const [role, setRole] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
+  // eslint-disable-next-line
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -55,6 +55,7 @@ export default function RegistoForm() {
         const minhaRole = opcoes.find(x => x.value === data.role)
         setTipo(minhaRole)
       })
+      // eslint-disable-next-line
   }, [])
 
   function mostrarErrorServidor(listaErros) {
@@ -155,6 +156,7 @@ export default function RegistoForm() {
           <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7" style={{ width: '100%', maxWidth: '200px', height: '100px', maxHeight: '200px' }}>
             <img
               title={nome}
+              alt="avatar"
               src={selectedImage
                 ? URL.createObjectURL(selectedImage)
                 : `https://localhost:7130/Imagens/${avatar}`}

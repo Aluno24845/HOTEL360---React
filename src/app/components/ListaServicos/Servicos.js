@@ -1,5 +1,4 @@
-import { useEffect, useState, useContext } from 'react'
-import { ContextoApp } from '../../../App.js'
+import { useEffect, useState } from 'react'
 import * as Api from '../../../service/api.js'
 import Item from './Item.js'
 
@@ -7,7 +6,6 @@ import Item from './Item.js'
 
 export default function ListaServicos() {
     const [servicos, setServicos] = useState([])
-    const { context } = useContext(ContextoApp)
 
     // carrega a lista da base de dados e guarda-a no estado
     // função utilizada para a recarregar a lista quando um serviço é apagado

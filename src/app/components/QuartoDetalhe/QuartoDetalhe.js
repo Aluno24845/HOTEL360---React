@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from 'react'
-import { HiPencil, HiTrash } from "react-icons/hi2";
+import { HiPencil } from "react-icons/hi2";
 import * as Api from '../../../service/api';
 import { useContext } from "react";
 import { ContextoApp } from '../../../App.js'
@@ -28,6 +28,7 @@ export default function QuartoDetalheView() {
                 setSelectedImage(`https://localhost:7130/Imagens/${data.imagem}`)
                 setLocalizacao(data.localizacao)
             })
+                // eslint-disable-next-line
     }, [])
 
 

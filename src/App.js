@@ -53,6 +53,7 @@ function App() {
             setStateApp({ utilizador: { ...data.utilizador }, ...stateApp })
           }
         })
+            // eslint-disable-next-line
   }, [])
 
   return (

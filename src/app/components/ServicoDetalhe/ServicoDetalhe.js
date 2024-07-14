@@ -15,6 +15,7 @@ export default function QuartoDetalheView() {
 
 
     // Carrega o serviço selecionado e guarda os detalhes no estado
+
     useEffect(() => {
         if (!id) return
         Api.getServicoComId(id)
@@ -24,7 +25,9 @@ export default function QuartoDetalheView() {
                 setPreco(data.preco)
                 setDescricao(data.descricao)
             })
+            // eslint-disable-next-line
     }, [])
+  
 
 
     return <div key={id} className="group" style={{ display: 'flex', flexDirection: 'column', }}>

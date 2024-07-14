@@ -1,5 +1,4 @@
 import Item from "./Item";
-import { HiPencil, HiTrash } from "react-icons/hi2";
 
 import { useEffect, useState } from 'react'
 import * as Api from '../../../service/api'

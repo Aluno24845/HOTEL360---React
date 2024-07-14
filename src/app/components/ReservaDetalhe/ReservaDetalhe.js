@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from 'react'
-import { HiPencil, HiTrash } from "react-icons/hi2";
+
+import { HiPencil } from "react-icons/hi2";
 import * as Api from '../../../service/api';
 import { useContext } from "react";
 import { ContextoApp } from '../../../App.js'
@@ -16,6 +17,7 @@ export default function ReservaDetalhe() {
     console.log('id ', id)
 
     const [dataReserva, setDataReserva] = useState("");
+        // eslint-disable-next-line
     const [valorPago, setValorPago] = useState("");
     const [dataCheckIN, setDataCheckIn] = useState("");
     const [dataCheckOUT, setDataCheckOut] = useState("");
@@ -40,6 +42,7 @@ export default function ReservaDetalhe() {
                 setHospede(data.hospede)
                 setSelectedImage(`https://localhost:7130/Imagens/${data.quarto.imagem}`)
             })
+                // eslint-disable-next-line
     }, [])
 
 

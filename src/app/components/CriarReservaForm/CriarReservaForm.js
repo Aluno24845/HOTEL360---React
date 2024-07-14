@@ -5,7 +5,7 @@ import * as Api from '../../../service/api'
 import { useParams } from "react-router-dom";
 import { ContextoApp } from '../../../App.js';
 import ButtonRegressar from "../ButtonRegressar/ButtonRegressar.js";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function CriarQuarto() {
@@ -24,7 +24,7 @@ export default function CriarQuarto() {
     const [listaQuartos, setListaQuartos] = useState([])
     const [listaHospedes, setListaHospedes] = useState([])
     const [rawServicos, setRawListaServicos] = useState([])
-    const [rawQuarto, setRawQuarto] = useState([])
+    // eslint-disable-next-line
     const [rawHospedes, setRawHospedes] = useState([])
     const [hospedes, setHospedes] = useState([])
     const [minCheckoutDate, setMinCheckoutDate] = useState(criaDataDiaMaisUm())
@@ -159,6 +159,7 @@ export default function CriarQuarto() {
 
                 })
         }
+        // eslint-disable-next-line
     }, [])
 
 

@@ -48,7 +48,6 @@ export function criarHospede(d) {
         data.append(key, d[key]);
     }
     return fetch('https://localhost:7130/api/utilizadores', {
-        body: JSON.stringify(data),
         method: "POST",
         body: data,
         headers: {
@@ -63,7 +62,6 @@ export function editarUtilizador(id, d) {
         data.append(key, d[key]);
     }
     return fetch('https://localhost:7130/api/utilizadores/' + id, {
-        body: JSON.stringify(data),
         method: "PUT",
         body: data,
         headers: {
@@ -79,7 +77,6 @@ export function criarUtilizador(d) {
         data.append(key, d[key]);
     }
     return fetch('https://localhost:7130/api/utilizadores', {
-        body: JSON.stringify(data),
         method: "POST",
         body: data,
         headers: {

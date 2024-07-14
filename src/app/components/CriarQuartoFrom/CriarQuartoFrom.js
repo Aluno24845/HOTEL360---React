@@ -45,6 +45,7 @@ export default function CriarQuarto() {
                 setLocalizacao(data.localizacao)
                 setSelectedImage(`https://localhost:7130/Imagens/${data.imagem}`)
             })
+            // eslint-disable-next-line
     }, [])
 
     // Função para lidar com o envio do formulário
