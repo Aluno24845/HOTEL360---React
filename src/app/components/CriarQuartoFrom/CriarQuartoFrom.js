@@ -38,7 +38,6 @@ export default function CriarQuarto() {
             .then(data => data.json())
             .then(data => {
                 setNome(data.nome)
-                debugger
                 setCapacidade(data.capacidade)
                 setPreco(data.preco)
                 setDescricao(data.descricao)
