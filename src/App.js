@@ -19,6 +19,10 @@ import QuartoDetalhe from "./app/paginas/QuartoDetalhe"
 import ReservaDetalhe from "./app/paginas/ReservaDetalhe"
 import ServicoDetalhe from "./app/paginas/ServicoDetalhe"
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 var contextReferencia = {
   contexto: {},
   setContexto: () => { },
@@ -53,6 +57,8 @@ function App() {
 
   return (
     <BrowserRouter>
+        <ToastContainer closeButton={false}/>
+
       <ContextoApp.Provider value={{ context: stateApp, setContexto: setStateApp }}>
         <Routes>
           <Route element={<AppLayout />}>
@@ -64,7 +70,8 @@ function App() {
             <Route path="/servicos/:id/detalhes" element={<ServicoDetalhe />} />
             {stateApp.utilizador && stateApp.utilizador.role === 'Gerentes' &&
               <>
-                <Route path="/criar-gerente-rececionista" element={<CriarUtilizador />} />
+                <Route path="/criar-utilizador" element={<CriarUtilizador />} />
+
                 <Route path="/utilizadores" element={<Utilizadores />} />
                 <Route path="/criar-quarto" element={<CriarQuarto />} />
                 <Route path="/criar-servico" element={<CriarServico />} />
@@ -72,7 +79,7 @@ function App() {
                 <Route path="/servicos/:id" element={<CriarServico />} />
               </>
             }
-            {stateApp.utilizador && (stateApp.utilizador.role === 'Gerentes' || stateApp.utilizador && stateApp.utilizador.role === 'Reccecionistas') &&
+            {stateApp.utilizador && (stateApp.utilizador.role === 'Gerentes' || stateApp.utilizador.role === 'Reccecionistas') &&
               <>
                 <Route path="/reservas/:id" element={<CriarReserva />} />
               </>
@@ -80,6 +87,7 @@ function App() {
 
             {stateApp.utilizador &&
               <>
+                <Route path="/editar-utilizador/:id" element={<CriarUtilizador />} />F
                 <Route path="/reservas" element={<Reservas />} />
                 <Route path="/criar-reserva" element={<CriarReserva />} />
                 <Route path="/reservas/:id/detalhes" element={<ReservaDetalhe />} />

@@ -8,6 +8,16 @@ export function autenticar(data) {
         }
     })
 }
+
+export function getQuartoDisponivel(de, ate) {
+    return fetch(`https://localhost:7130/api/quartos/disponivel?de=${de}&ate=${ate}`, {
+        headers: {
+            'Authorization': "Bearer " + localStorage.getItem('token'),
+            'Content-Type': 'application/json',
+        }
+    })
+}
+
 export function getMyself() {
     return fetch('https://localhost:7130/api/utilizadores/myself', {
         headers: {
@@ -24,29 +34,70 @@ export function getUtilizadores() {
         }
     })
 }
-
-export function criarUtilizador(data) {
-    return fetch('https://localhost:7130/api/utilizadores', {
-        body: JSON.stringify(data),
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    })
-}
-
-export function criarGerenteOuRececionista(data) {
-    return fetch('https://localhost:7130/api/utilizadores', {
-        body: JSON.stringify(data),
-        method: "POST",
+export function getUtilizador(id) {
+    return fetch('https://localhost:7130/api/utilizadores/' + id, {
         headers: {
             'Authorization': "Bearer " + localStorage.getItem('token'),
             'Content-Type': 'application/json',
         }
     })
 }
+export function criarHospede(d) {
+    let data = new FormData();
+    for (const key of Object.keys(d)) {
+        data.append(key, d[key]);
+    }
+    return fetch('https://localhost:7130/api/utilizadores', {
+        body: JSON.stringify(data),
+        method: "POST",
+        body: data,
+        headers: {
+            // 'Content-Type': 'application/json',
+        }
+    })
+}
 
+export function editarUtilizador(id, d) {
+    let data = new FormData();
+    for (const key of Object.keys(d)) {
+        data.append(key, d[key]);
+    }
+    return fetch('https://localhost:7130/api/utilizadores/' + id, {
+        body: JSON.stringify(data),
+        method: "PUT",
+        body: data,
+        headers: {
+            'Authorization': "Bearer " + localStorage.getItem('token'),
+            // 'Content-Type': 'application/json',
+        }
+    })
+}
 
+export function criarUtilizador(d) {
+    let data = new FormData();
+    for (const key of Object.keys(d)) {
+        data.append(key, d[key]);
+    }
+    return fetch('https://localhost:7130/api/utilizadores', {
+        body: JSON.stringify(data),
+        method: "POST",
+        body: data,
+        headers: {
+            'Authorization': "Bearer " + localStorage.getItem('token'),
+            // 'Content-Type': 'application/json',
+        }
+    })
+}
+
+export function apagarUtilizador(id) {
+    return fetch('https://localhost:7130/api/utilizadores/' + id, {
+        method: "DELETE",
+        headers: {
+            'Authorization': "Bearer " + localStorage.getItem('token'),
+            'Content-Type': 'application/json',
+        }
+    })
+}
 
 export function getQuartos() {
     return fetch('https://localhost:7130/api/quartos')

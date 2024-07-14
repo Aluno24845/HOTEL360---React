@@ -3,9 +3,33 @@ import { useContext } from "react";
 import { ContextoApp } from '../../../App.js'
 import * as Api from '../../../service/api'
 
+import ToastConfirmaDelete from '../ToastConfirmaDelete'
+
+import { toast } from 'react-toastify';
+
+
 export default function Quarto({ quarto, reloadLista }) {
     const { context } = useContext(ContextoApp)
 
+
+    //Lida com o click do botao apagar
+    //Responsavel por criar um 'toast' para confirmar a ação de remover quarto
+    const handleDelete = (id) => {
+        toast(
+            ({ closeToast }) => (
+                <ToastConfirmaDelete id={id} action={apagarQuarto} closeToast={closeToast} item='quarto' />
+            ),
+            {
+                closeOnClick: true,
+                close: false,
+                autoClose: false,
+                position: 'top-center',
+            }
+        );
+    };
+
+    //Aceita o id do quarto selecionado para apagar
+    //Apaga o quarto e atualiza a lista de quartos
     function apagarQuarto(id) {
         Api.apagaQuarto(id)
             .then(data => data.json)
@@ -30,7 +54,7 @@ export default function Quarto({ quarto, reloadLista }) {
             {context.utilizador && context.utilizador.role === 'Gerentes' &&
                 <div className="text-white font-semibold bg-indigo-500 shadow-sm" style={{ display: 'flex', justifyContent: 'space-around', padding: '3px' }}>
                     <a style={{ alignItems: 'center', borderRight: '1px solid white', flexGrow: 1, justifyContent: 'center' }} className="flex" href={`/quartos/${quarto.id}`}><HiPencil />Editar</a>
-                    <button style={{ alignItems: 'center', borderLeft: '1px solid white', flexGrow: 1, justifyContent: 'center' }} className="flex" onClick={() => apagarQuarto(quarto.id)}><HiTrash />Apagar</button>
+                    <button style={{ alignItems: 'center', borderLeft: '1px solid white', flexGrow: 1, justifyContent: 'center' }} className="flex" onClick={() => handleDelete(quarto.id)}><HiTrash />Apagar</button>
                 </div>
             }
         </div>

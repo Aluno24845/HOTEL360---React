@@ -4,15 +4,17 @@ import { HiPencil } from "react-icons/hi2";
 import * as Api from '../../../service/api';
 import { useContext } from "react";
 import { ContextoApp } from '../../../App.js'
+import ButtonRegressar from "../ButtonRegressar/ButtonRegressar.js";
 
 export default function QuartoDetalheView() {
     const { context } = useContext(ContextoApp)
     const { id } = useParams()
-    console.log('id ', id)
     const [nome, setNome] = useState("");
     const [preco, setPreco] = useState("");
     const [descricao, setDescricao] = useState("");
 
+
+    // Carrega o serviço selecionado e guarda os detalhes no estado
     useEffect(() => {
         if (!id) return
         Api.getServicoComId(id)
@@ -26,6 +28,7 @@ export default function QuartoDetalheView() {
 
 
     return <div key={id} className="group" style={{ display: 'flex', flexDirection: 'column', }}>
+        <ButtonRegressar></ButtonRegressar>
         <h2 className="text-5xl font-bold tracking-tight text-gray-900 sm:text-1xl" style={{ marginBottom: 20 }}>Servico - {nome}</h2>
         <div style={{ display: 'flex', flexDirection: 'column', padding: '8px' }}>
             <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7" style={{ width: '100%', maxWidth: '600px', height: '100%', maxHeight: '400px', alignSelf: 'center' }}></div>

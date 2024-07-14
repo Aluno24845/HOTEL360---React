@@ -4,7 +4,7 @@ import * as Api from '../../../service/api'
 import { useParams } from "react-router-dom";
 import { useContext } from "react";
 import { ContextoApp } from '../../../App.js'
-
+import ButtonRegressar from "../ButtonRegressar/ButtonRegressar.js";
 export default function CriarServico() {
     const { context } = useContext(ContextoApp)
     // Estado para armazenar o e-mail e a senha
@@ -71,6 +71,7 @@ export default function CriarServico() {
             className="p-2 bg-gray-50 border-gray-200 rounded-lg"
             onSubmit={handleSubmit}
         >
+                        <ButtonRegressar></ButtonRegressar>
             <div className="flex flex-col gap-2 p-4">
                 <label htmlFor="email">Nome:</label>
                 <input

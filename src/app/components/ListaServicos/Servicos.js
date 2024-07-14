@@ -9,11 +9,15 @@ export default function ListaServicos() {
     const [servicos, setServicos] = useState([])
     const { context } = useContext(ContextoApp)
 
+    // carrega a lista da base de dados e guarda-a no estado
+    // função utilizada para a recarregar a lista quando um serviço é apagado
     function reloadLista() {
         Api.getServicos()
             .then(data => data.json())
             .then(data => setServicos(data))
     }
+
+    // carrega a lista da base de dados e guarda-a no estado
     useEffect(() => {
         Api.getServicos()
             .then(data => data.json())

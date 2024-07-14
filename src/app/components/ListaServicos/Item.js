@@ -2,9 +2,28 @@ import { useContext } from "react";
 import { ContextoApp } from '../../../App.js'
 import { HiEye, HiPencil, HiTrash } from "react-icons/hi2";
 import * as Api from '../../../service/api.js'
+import ToastConfirmaDelete from '../ToastConfirmaDelete'
+
+import { toast } from 'react-toastify';
 
 export default function Item({ servico, reloadLista }) {
     const { context } = useContext(ContextoApp)
+
+
+        
+    const handleDelete = (id) => {
+        toast(
+            ({ closeToast }) => (
+                <ToastConfirmaDelete id={id} action={apagarServico} closeToast={closeToast} item='serviço' />
+            ),
+            {
+                closeOnClick: true,
+                close: false,
+                autoClose: false,
+                position: 'top-center',
+            }
+        );
+    };
 
     function apagarServico(id) {
         Api.apagarServico(id)
@@ -18,13 +37,13 @@ export default function Item({ servico, reloadLista }) {
             <div>{servico.descricao}</div>
             <div>{servico.preco}€</div>
             <div className="flex" style={{ alignSelf: 'center' }}>
-                <a style={{ paddingRight: 10 }} href={`/servicos/${servico.id}/detalhes`}>
-                    < HiEye /> Ver
+                <a title="Ver" style={{ paddingRight: 10 }} href={`/servicos/${servico.id}/detalhes`}>
+                    < HiEye />
                 </a>
                 {context.utilizador && context.utilizador.role === 'Gerentes' &&
                     <div className="" style={{ display: 'flex', justifyContent: 'space-around', padding: '3px' }}>
-                        <a className="flex" style={{ alignItems: 'center' }} href={`/servicos/${servico.id}`}><HiPencil />Editar</a>
-                        <button className="flex" style={{ marginLeft: 10, alignItems: 'center' }} onClick={() => apagarServico(servico.id)}><HiTrash />Apagar</button>
+                        <a title="Editar" className="flex" style={{ alignItems: 'center' }} href={`/servicos/${servico.id}`}><HiPencil /></a>
+                        <button title="Apagar" className="flex" style={{ marginLeft: 10, alignItems: 'center' }} onClick={() => handleDelete(servico.id)}><HiTrash /></button>
                     </div>
                 }
             </div>

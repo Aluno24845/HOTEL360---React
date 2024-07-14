@@ -4,10 +4,10 @@ import { useContext } from 'react';
 
 import {
   HiOutlineCalendarDays,
-  HiOutlineCog6Tooth,
-  HiOutlineHome,
-  HiOutlineHomeModern,
   HiOutlineUsers,
+  HiOutlineHome ,
+  HiOutlineArchiveBox,
+  HiOutlineTag 
 } from "react-icons/hi2";
 
 export default function MenuEsquerda() {
@@ -15,6 +15,13 @@ export default function MenuEsquerda() {
 
   return (
     <ul>
+      <li >
+        <NavLink to="/" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', lineHeight: '40px' }}>
+          <HiOutlineHome  />
+          <span style={{ paddingLeft: 10 }}>Home</span>
+        </NavLink>
+      </li>
+
       <li >
         <NavLink to="/quartos" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', lineHeight: '40px' }}>
           <HiOutlineCalendarDays />
@@ -24,14 +31,14 @@ export default function MenuEsquerda() {
       {context.utilizador && (context.utilizador.role === 'Gerentes' || context.utilizador.role === 'Reccecionistas' || context.utilizador.role === 'Hospedes') &&
         <li>
           <NavLink to="/reservas" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', lineHeight: '40px' }}>
-            <HiOutlineHomeModern />
+            <HiOutlineArchiveBox   />
             <span style={{ paddingLeft: 10 }}>Reservas</span>
           </NavLink>
         </li>
       }
       <li>
         <NavLink to="/servicos" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', lineHeight: '40px' }}>
-          <HiOutlineHomeModern />
+          <HiOutlineTag  />
           <span style={{ paddingLeft: 10 }}>Serviços</span>
         </NavLink>
       </li>
