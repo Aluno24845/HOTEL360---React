@@ -25,7 +25,7 @@ export default function QuartoDetalheView() {
                 setCapacidade(data.capacidade)
                 setPreco(data.preco)
                 setDescricao(data.descricao)
-                setSelectedImage(`https://localhost:7130/Imagens/${data.imagem}`)
+                setSelectedImage(`https://hotel360dweb.azurewebsites.net/Imagens/${data.imagem}`)
                 setLocalizacao(data.localizacao)
             })
                 // eslint-disable-next-line

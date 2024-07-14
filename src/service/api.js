@@ -1,6 +1,6 @@
 //lista de apis
 export function autenticar(data) {
-    return fetch('https://localhost:7130/login', {
+    return fetch('https://hotel360dweb.azurewebsites.net/login', {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
@@ -10,7 +10,7 @@ export function autenticar(data) {
 }
 
 export function getQuartoDisponivel(de, ate) {
-    return fetch(`https://localhost:7130/api/quartos/disponivel?de=${de}&ate=${ate}`, {
+    return fetch(`https://hotel360dweb.azurewebsites.net/api/quartos/disponivel?de=${de}&ate=${ate}`, {
         headers: {
             'Authorization': "Bearer " + localStorage.getItem('token'),
             'Content-Type': 'application/json',
@@ -19,7 +19,7 @@ export function getQuartoDisponivel(de, ate) {
 }
 
 export function getMyself() {
-    return fetch('https://localhost:7130/api/utilizadores/myself', {
+    return fetch('https://hotel360dweb.azurewebsites.net/api/utilizadores/myself', {
         headers: {
             'Authorization': "Bearer " + localStorage.getItem('token'),
             'Content-Type': 'application/json',
@@ -27,7 +27,7 @@ export function getMyself() {
     })
 }
 export function getUtilizadores() {
-    return fetch('https://localhost:7130/api/utilizadores', {
+    return fetch('https://hotel360dweb.azurewebsites.net/api/utilizadores', {
         headers: {
             'Authorization': "Bearer " + localStorage.getItem('token'),
             'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ export function getUtilizadores() {
     })
 }
 export function getUtilizador(id) {
-    return fetch('https://localhost:7130/api/utilizadores/' + id, {
+    return fetch('https://hotel360dweb.azurewebsites.net/api/utilizadores/' + id, {
         headers: {
             'Authorization': "Bearer " + localStorage.getItem('token'),
             'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ export function criarHospede(d) {
     for (const key of Object.keys(d)) {
         data.append(key, d[key]);
     }
-    return fetch('https://localhost:7130/api/utilizadores', {
+    return fetch('https://hotel360dweb.azurewebsites.net/api/utilizadores', {
         method: "POST",
         body: data,
         headers: {
@@ -61,7 +61,7 @@ export function editarUtilizador(id, d) {
     for (const key of Object.keys(d)) {
         data.append(key, d[key]);
     }
-    return fetch('https://localhost:7130/api/utilizadores/' + id, {
+    return fetch('https://hotel360dweb.azurewebsites.net/api/utilizadores/' + id, {
         method: "PUT",
         body: data,
         headers: {
@@ -76,7 +76,7 @@ export function criarUtilizador(d) {
     for (const key of Object.keys(d)) {
         data.append(key, d[key]);
     }
-    return fetch('https://localhost:7130/api/utilizadores', {
+    return fetch('https://hotel360dweb.azurewebsites.net/api/utilizadores', {
         method: "POST",
         body: data,
         headers: {
@@ -87,7 +87,7 @@ export function criarUtilizador(d) {
 }
 
 export function apagarUtilizador(id) {
-    return fetch('https://localhost:7130/api/utilizadores/' + id, {
+    return fetch('https://hotel360dweb.azurewebsites.net/api/utilizadores/' + id, {
         method: "DELETE",
         headers: {
             'Authorization': "Bearer " + localStorage.getItem('token'),
@@ -97,13 +97,13 @@ export function apagarUtilizador(id) {
 }
 
 export function getQuartos() {
-    return fetch('https://localhost:7130/api/quartos')
+    return fetch('https://hotel360dweb.azurewebsites.net/api/quartos')
 }
 export function getQuartoComId(id) {
-    return fetch(`https://localhost:7130/api/quartos/${id}`)
+    return fetch(`https://hotel360dweb.azurewebsites.net/api/quartos/${id}`)
 }
 export function getReservas() {
-    return fetch('https://localhost:7130/api/reservas', {
+    return fetch('https://hotel360dweb.azurewebsites.net/api/reservas', {
         headers: {
             'Authorization': "Bearer " + localStorage.getItem('token'),
             'Content-Type': 'application/json',
@@ -111,7 +111,7 @@ export function getReservas() {
     })
 }
 export function getReservaComId(id) {
-    return fetch(`https://localhost:7130/api/reservas/${id}`, {
+    return fetch(`https://hotel360dweb.azurewebsites.net/api/reservas/${id}`, {
         headers: {
             'Authorization': "Bearer " + localStorage.getItem('token'),
             'Content-Type': 'application/json',
@@ -121,7 +121,7 @@ export function getReservaComId(id) {
 
 
 export function getHospedes() {
-    return fetch('https://localhost:7130/api/utilizadores/hospedes', {
+    return fetch('https://hotel360dweb.azurewebsites.net/api/utilizadores/hospedes', {
         headers: {
             'Authorization': "Bearer " + localStorage.getItem('token'),
             'Content-Type': 'application/json',
@@ -134,7 +134,7 @@ export function criarQuarto(d) {
     for (const key of Object.keys(d)) {
         data.append(key, d[key]);
     }
-    return fetch('https://localhost:7130/api/quartos', {
+    return fetch('https://hotel360dweb.azurewebsites.net/api/quartos', {
         method: 'POST',
         body: data,
         headers: {
@@ -151,7 +151,7 @@ export function editarQuarto(id, d) {
             data.append(key, d[key]);
         }
     }
-    return fetch(`https://localhost:7130/api/quartos/${id}`, {
+    return fetch(`https://hotel360dweb.azurewebsites.net/api/quartos/${id}`, {
         method: 'PUT',
         body: data,
         headers: {
@@ -160,7 +160,7 @@ export function editarQuarto(id, d) {
     })
 }
 export function apagaQuarto(id) {
-    return fetch(`https://localhost:7130/api/quartos/${id}`, {
+    return fetch(`https://hotel360dweb.azurewebsites.net/api/quartos/${id}`, {
         method: "DELETE",
         headers: {
             'Authorization': "Bearer " + localStorage.getItem('token'),
@@ -170,15 +170,15 @@ export function apagaQuarto(id) {
 }
 
 export function getServicos() {
-    return fetch('https://localhost:7130/api/servicos')
+    return fetch('https://hotel360dweb.azurewebsites.net/api/servicos')
 }
 
 export function getServicoComId(id) {
-    return fetch(`https://localhost:7130/api/servicos/${id}`)
+    return fetch(`https://hotel360dweb.azurewebsites.net/api/servicos/${id}`)
 }
 
 export function criarServico(data) {
-    return fetch('https://localhost:7130/api/servicos', {
+    return fetch('https://hotel360dweb.azurewebsites.net/api/servicos', {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -188,7 +188,7 @@ export function criarServico(data) {
     })
 }
 export function editarServico(id, data) {
-    return fetch(`https://localhost:7130/api/servicos/${id}`, {
+    return fetch(`https://hotel360dweb.azurewebsites.net/api/servicos/${id}`, {
         method: "PUT",
         body: JSON.stringify(data),
         headers: {
@@ -200,7 +200,7 @@ export function editarServico(id, data) {
 
 
 export function apagarServico(id) {
-    return fetch(`https://localhost:7130/api/servicos/${id}`, {
+    return fetch(`https://hotel360dweb.azurewebsites.net/api/servicos/${id}`, {
         method: "DELETE",
         headers: {
             'Authorization': "Bearer " + localStorage.getItem('token'),
@@ -210,7 +210,7 @@ export function apagarServico(id) {
 
 
 export function criarReserva(data) {
-    return fetch('https://localhost:7130/api/reservas', {
+    return fetch('https://hotel360dweb.azurewebsites.net/api/reservas', {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
@@ -223,7 +223,7 @@ export function criarReserva(data) {
 
 export function editarReserva(id, data) {
     data.HospedeId = 5;
-    return fetch(`https://localhost:7130/api/reservas/${id}`, {
+    return fetch(`https://hotel360dweb.azurewebsites.net/api/reservas/${id}`, {
         method: 'PUT',
         body: JSON.stringify(data),
         headers: {
@@ -234,7 +234,7 @@ export function editarReserva(id, data) {
 }
 
 export function apagaReserva(id) {
-    return fetch(`https://localhost:7130/api/reservas/${id}`, {
+    return fetch(`https://hotel360dweb.azurewebsites.net/api/reservas/${id}`, {
         method: "DELETE",
         headers: {
             'Authorization': "Bearer " + localStorage.getItem('token'),

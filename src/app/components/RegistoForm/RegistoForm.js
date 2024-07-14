@@ -159,7 +159,7 @@ export default function RegistoForm() {
               alt="avatar"
               src={selectedImage
                 ? URL.createObjectURL(selectedImage)
-                : `https://localhost:7130/Imagens/${avatar}`}
+                : `https://hotel360dweb.azurewebsites.net/Imagens/${avatar}`}
               className="h-full w-full object-cover object-center group-hover:opacity-75"
             ></img>
           </div>

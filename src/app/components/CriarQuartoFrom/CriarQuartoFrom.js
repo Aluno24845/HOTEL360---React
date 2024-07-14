@@ -43,7 +43,7 @@ export default function CriarQuarto() {
                 setPreco(data.preco)
                 setDescricao(data.descricao)
                 setLocalizacao(data.localizacao)
-                setSelectedImage(`https://localhost:7130/Imagens/${data.imagem}`)
+                setSelectedImage(`https://hotel360dweb.azurewebsites.net/Imagens/${data.imagem}`)
             })
             // eslint-disable-next-line
     }, [])

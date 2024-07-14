@@ -42,10 +42,10 @@ export default function Quarto({ quarto, reloadLista }) {
             <a href={`/quartos/${quarto.id}/detalhes`} style={{ display: 'flex', flexDirection: 'column', padding: '8px' }}>
                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7" style={{ width: '100%', maxWidth: '200px', height: '100px', maxHeight: '200px' }}>
                     <img
-                        // src={`https://localhost:7130/Imagens/e5814941-e716-4074-8841-2c09dbcbcce0.png`}
+                        // src={`https://hotel360dweb.azurewebsites.net/Imagens/e5814941-e716-4074-8841-2c09dbcbcce0.png`}
                         title={quarto.nome}
                         alt="imagem do quarto"
-                        src={`https://localhost:7130/Imagens/${quarto.imagem}`}
+                        src={`https://hotel360dweb.azurewebsites.net/Imagens/${quarto.imagem}`}
                         className="h-full w-full object-cover object-center group-hover:opacity-75"
                     ></img>
                 </div>

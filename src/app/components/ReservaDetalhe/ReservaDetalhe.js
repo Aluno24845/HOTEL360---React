@@ -40,7 +40,7 @@ export default function ReservaDetalhe() {
                 setQuarto(data.quarto)
                 setListaServices(data.listaServicos)
                 setHospede(data.hospede)
-                setSelectedImage(`https://localhost:7130/Imagens/${data.quarto.imagem}`)
+                setSelectedImage(`https://hotel360dweb.azurewebsites.net/Imagens/${data.quarto.imagem}`)
             })
                 // eslint-disable-next-line
     }, [])
